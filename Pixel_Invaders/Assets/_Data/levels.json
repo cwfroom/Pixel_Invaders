@@ -1,0 +1,14 @@
+{
+  "levels": [
+    {
+      "getTiredInterval": 1.0,
+      "gainProgressInterval": 1.0,
+      "normalSpeed": 10.0
+    },
+    {
+      "getTiredInterval": 1.2,
+      "gainProgressInterval": 1.2,
+      "normalSpeed": 11.0
+    }
+  ]
+}
