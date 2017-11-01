@@ -21,36 +21,50 @@ public class SpaceInvaderControl : EnemyControl {
     IEnumerator ChangeLaneRoutine(){
         while (true)
         {
-            ChangeLane();
-            yield return new WaitForSeconds(changeLaneInterval);
+             ChangeLane();
+             yield return new WaitForSeconds(changeLaneInterval);
         }
     }
 
-    void ChangeLane(){   
-        int laneIndex;
-        laneX = MasterSpawn.GetInitialX();
-        for (laneIndex = 0;laneIndex<laneX.Length;laneIndex++){
-          if (Mathf.Abs(transform.position.x-laneX[laneIndex]) < 0.01){
-            break;
-          }
-        }
+    void ChangeLane(){
+        if (gameObject.transform.position.y > -4.5f)
+        {
+                int laneIndex;
+                laneX = MasterSpawn.GetInitialX();
+                for (laneIndex = 0; laneIndex < laneX.Length; laneIndex++)
+                {
+                    if (Mathf.Abs(transform.position.x - laneX[laneIndex]) < 0.01)
+                    {
+                        break;
+                    }
+                }
 
-        if (laneIndex == laneX.Length){
-            return;
-        }
+                if (laneIndex == laneX.Length)
+                {
+                    return;
+                }
 
-        if (laneIndex == 0){
-          MoveX(laneX[1]);
-        }else if(laneIndex == laneX.Length - 1){
-          MoveX(laneX[laneX.Length-2]);
-        }else{
-          int randDirection = Random.Range(0,3);
-          if (randDirection < 1){
-            MoveX(laneX[laneIndex-1]);
-          }else{
-            MoveX(laneX[laneIndex+1]);       
-          }
-        }
+                if (laneIndex == 0)
+                {
+                    MoveX(laneX[1]);
+                }
+                else if (laneIndex == laneX.Length - 1)
+                {
+                    MoveX(laneX[laneX.Length - 2]);
+                }
+                else
+                {
+                    int randDirection = Random.Range(0, 3);
+                    if (randDirection < 1)
+                    {
+                        MoveX(laneX[laneIndex - 1]);
+                    }
+                    else
+                    {
+                        MoveX(laneX[laneIndex + 1]);
+                    }
+                }
+            }
     }
 
     void MoveX(float x){
