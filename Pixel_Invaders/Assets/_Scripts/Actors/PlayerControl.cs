@@ -7,15 +7,20 @@ public class PlayerControl : MonoBehaviour {
     private SoundEffectManager se;
 
     public float lowerX = -1.28f;
-    public float initialY = -5.0f;
+    public float initialY = -5.5f;
     public float unit = 0.65f;
     private float[] playerPositions;
 	private static bool isJumping;
+
 
     private int pos = 2;
     private float screenCenterX;
     private bool movementEnabled;
 
+    public Collider toeCollider;
+    public Collider baseCollider;
+    private Animator charaAnimator;
+    private float jumpAnimLength;
 
     // Use this for initialization
     void Start () {
@@ -34,9 +39,18 @@ public class PlayerControl : MonoBehaviour {
         {
             playerPositions[i] = lowerX + unit * i;
         }
-        transform.position = new Vector3(playerPositions[pos], initialY);
+        transform.position = new Vector3(playerPositions[pos], initialY,0.1f);
 
 		isJumping = false;
+        charaAnimator = GetComponent<Animator>();
+        RuntimeAnimatorController ac = charaAnimator.runtimeAnimatorController;
+        for (int i = 0; i < ac.animationClips.Length; i++)
+        {
+            if (ac.animationClips[i].name == "JUMP00")
+            {
+                jumpAnimLength = ac.animationClips[i].length;
+            }
+        }
     }
 	
 	// Update is called once per frame
@@ -63,10 +77,12 @@ public class PlayerControl : MonoBehaviour {
                 }
 
 			}else if (Input.GetKeyDown (KeyCode.Space) && !isJumping) {
+                /*
 				GetComponent<Rigidbody2D> ().gravityScale = 1.0f;
 				GetComponent<Rigidbody2D> ().AddForce (transform.up * 200.0f);
-				isJumping = true;
-                se.PlaySE("jump");
+			    */
+                Jump();
+                
 			}
 
             if (Input.touchCount > 0){
@@ -74,11 +90,13 @@ public class PlayerControl : MonoBehaviour {
             }
 
             if(Input.touchCount == 2 && !isJumping){
-                    GetComponent<Rigidbody2D> ().gravityScale = 1.0f;
-				    GetComponent<Rigidbody2D> ().AddForce (transform.up * 200.0f);
-				    isJumping = true;
-                    se.PlaySE("jump");
-            }else if(Input.touchCount == 1)
+                /*
+                GetComponent<Rigidbody2D> ().gravityScale = 1.0f;
+                GetComponent<Rigidbody2D> ().AddForce (transform.up * 200.0f);
+                */
+                Jump();
+            }
+            else if(Input.touchCount == 1)
             {
                 Touch firstTouch = Input.GetTouch(0);
 
@@ -144,10 +162,31 @@ public class PlayerControl : MonoBehaviour {
         return isJumping;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void Jump()
     {
+        isJumping = true;
+        charaAnimator.SetBool("isJumping?", true);
+        se.PlaySE("jump");
+        baseCollider.enabled = false;
+        Invoke("ResetJumping", jumpAnimLength);
+        
+    }
 
+    private void ResetJumping()
+    {
+        baseCollider.enabled = true;
+        isJumping = false;
+        charaAnimator.SetBool("isJumping?", false);
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        
         string otherTag = collision.gameObject.tag;
+
+        Debug.Log(otherTag);
+ 
 
         switch (otherTag) {
             case "Enemy":
@@ -193,13 +232,10 @@ public class PlayerControl : MonoBehaviour {
                 }
 
                 break;
-            case "Ground":
-                isJumping = false;
-                break;
-            
         }
 
 
 
     }
+
 }

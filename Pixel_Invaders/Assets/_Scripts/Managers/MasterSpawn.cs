@@ -80,7 +80,7 @@ public class MasterSpawn : MonoBehaviour {
         {
             int randX = Random.Range(0, initialX.Length);
            
-            Vector3 randPos = new Vector3(initialX[randX], initialY, 0);
+            Vector3 randPos = new Vector3(initialX[randX], initialY, -0.1f);
 
             //Since river means instant death, make sure there is an interval between two rivers
             int riverCount = 0;

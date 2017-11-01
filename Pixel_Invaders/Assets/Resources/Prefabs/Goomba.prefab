@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4672127483747498}
   - component: {fileID: 212824363139159116}
   - component: {fileID: 95693289355061042}
-  - component: {fileID: 50977647045239272}
-  - component: {fileID: 61262429828045926}
   - component: {fileID: 114732524605105678}
   - component: {fileID: 82703116223651752}
+  - component: {fileID: 54114597808234378}
+  - component: {fileID: 65034489695006290}
   m_Layer: 9
   m_Name: Goomba
   m_TagString: Enemy
@@ -45,51 +45,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50977647045239272
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!54 &54114597808234378
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1445075087272060}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  serializedVersion: 2
   m_Mass: 1
-  m_LinearDrag: 0
+  m_Drag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Constraints: 122
   m_CollisionDetection: 0
-  m_Constraints: 5
---- !u!61 &61262429828045926
-BoxCollider2D:
+--- !u!65 &65034489695006290
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1445075087272060}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.48, y: 2.49}
-    newSize: {x: 2.48, y: 2.49}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.48, y: 2.49}
-  m_EdgeRadius: 0
+  m_Size: {x: 2.48, y: 2.49, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82703116223651752
 AudioSource:
   m_ObjectHideFlags: 1
