@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
     public float getTiredInterval = 0.4f;
     public float gainProgressInterval = 0.2f;
 
+    private Coroutine currentGetTiredCoroutine;
+    private Coroutine currentGainProgressCoroutine;
 
 	// Use this for initialization
 	void Start () {
@@ -67,11 +69,18 @@ public class GameManager : MonoBehaviour {
 
         pc.EnableMovement();
 
-        StopCoroutine(GetTired(0));
-        StopCoroutine(GainProgress(0));
+        if (currentGetTiredCoroutine != null)
+        {
+            StopCoroutine(currentGetTiredCoroutine);
+        }
         
-        StartCoroutine(GetTired(getTiredInterval));
-        StartCoroutine(GainProgress(gainProgressInterval));
+        if (currentGainProgressCoroutine != null)
+        {
+            StopCoroutine(currentGainProgressCoroutine);
+        }
+
+        currentGetTiredCoroutine = StartCoroutine(GetTired(getTiredInterval));
+        currentGainProgressCoroutine = StartCoroutine(GainProgress(gainProgressInterval));
     }
 
     IEnumerator HideLevel()
