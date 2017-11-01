@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour {
     public Collider baseCollider;
     private Animator charaAnimator;
     private float jumpAnimLength;
+    private float damageAnimLength;
 
     // Use this for initialization
     void Start () {
@@ -50,6 +51,11 @@ public class PlayerControl : MonoBehaviour {
             {
                 jumpAnimLength = ac.animationClips[i].length;
             }
+            if (ac.animationClips[i].name == "DAMAGED00")
+            {
+                damageAnimLength = ac.animationClips[i].length;
+            }
+            
         }
     }
 	
@@ -179,6 +185,17 @@ public class PlayerControl : MonoBehaviour {
         charaAnimator.SetBool("isJumping?", false);
     }
 
+    private void TakeDamageAnim()
+    {
+        charaAnimator.SetBool("isDamage?",true);
+        Invoke("ResetDamageAnim", damageAnimLength);
+    }
+
+    private void ResetDamageAnim()
+    {
+        charaAnimator.SetBool("isDamage?", false);
+    }
+
 
     void OnCollisionEnter(Collision collision)
     {
@@ -193,7 +210,10 @@ public class PlayerControl : MonoBehaviour {
                 EnemyControl ec = collision.gameObject.GetComponent<EnemyControl>();
                 if (ec)
                 {
-					
+					if (!isJumping)
+                    {
+                        TakeDamageAnim();
+                    }
 
 					if (ec.gameObject.name == "SpaceInvader") {
 						SpaceInvaderControl sc = (SpaceInvaderControl)ec;
