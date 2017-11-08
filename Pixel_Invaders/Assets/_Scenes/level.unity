@@ -1087,8 +1087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ef684a563e76742a2459bd371471fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getTiredInterval: 0.2
-  gainProgressInterval: 0.2
+  getTiredInterval: 0.4
+  gainProgressInterval: 0.1
 --- !u!114 &894485217
 MonoBehaviour:
   m_ObjectHideFlags: 0
