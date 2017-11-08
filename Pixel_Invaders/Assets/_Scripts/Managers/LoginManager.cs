@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //using Facebook.Unity;
-using UnityEngine.SceneManagement;
+
 
 public class LoginManager : MonoBehaviour {
     /*
