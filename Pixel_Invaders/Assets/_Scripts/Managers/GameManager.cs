@@ -13,14 +13,14 @@ public class GameManager : MonoBehaviour {
     private string levelDataFile = "/_Data/levels.json";
     private LevelData[] levels;
 
-    private int level = 0;
+    private static int level = 0;
     private int score = 0;
     private int stamina = 100;
     private int progress = 0;
     private bool isGameOver;
 
     public float getTiredInterval = 0.4f;
-    public float gainProgressInterval = 0.2f;
+    public float gainProgressInterval = 0.1f;
 
     private Coroutine currentGetTiredCoroutine;
     private Coroutine currentGainProgressCoroutine;
@@ -168,4 +168,8 @@ public class GameManager : MonoBehaviour {
         level++;
         StartLevel(level);
 	}
+
+    public static int GetLevel(){
+        return level;
+    }
 }

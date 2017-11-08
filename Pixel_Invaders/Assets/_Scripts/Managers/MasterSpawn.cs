@@ -88,7 +88,13 @@ public class MasterSpawn : MonoBehaviour {
             int typeRand = Random.Range(0, 100);
             if (typeRand < 60)
             {
-                int randType = Random.Range(0, EnemyTypes.Count);
+                int currentLevel = GameManager.GetLevel() + 1;
+                if (currentLevel > EnemyTypes.Count){
+                    currentLevel = EnemyTypes.Count;
+                }
+
+                int randType = Random.Range(0, currentLevel);
+
                 if (buffer[EnemyTypes[randType].name].Count > 0)
                 {
                     GameObject g = buffer[EnemyTypes[randType].name].Pop();

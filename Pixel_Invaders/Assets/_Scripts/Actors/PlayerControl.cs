@@ -201,10 +201,6 @@ public class PlayerControl : MonoBehaviour {
     {
         
         string otherTag = collision.gameObject.tag;
-
-        Debug.Log(otherTag);
- 
-
         switch (otherTag) {
             case "Enemy":
                 EnemyControl ec = collision.gameObject.GetComponent<EnemyControl>();
