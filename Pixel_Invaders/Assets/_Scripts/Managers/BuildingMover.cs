@@ -25,4 +25,9 @@ public class BuildingMover : MonoBehaviour {
             }
         }
 	}
+
+    public void DisableMovement()
+    {
+        moving = false;
+    }
 }

@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 using System.IO;
 
 public class GameManager : MonoBehaviour {
-
     private UIManager ui;
     private MasterSpawn spawn;
     private PlayerControl pc;
+    private BuildingMover[] buildings;
 
     private string levelDataFile = "/_Data/levels.json";
     private LevelData[] levels;
@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour {
     private int progress = 0;
     private bool isGameOver;
 
-    public float getTiredInterval = 0.4f;
-    public float gainProgressInterval = 0.1f;
+    public float getTiredInterval = 0.2f;
+    public float gainProgressInterval = 0.4f;
 
     private Coroutine currentGetTiredCoroutine;
     private Coroutine currentGainProgressCoroutine;
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
         {
             Debug.Log("Failed to find player control in GameManager");
         }
-
+        buildings = FindObjectsOfType<BuildingMover>();
         spawn = GetComponent<MasterSpawn>();
 
         LoadLevelData();
@@ -48,12 +48,9 @@ public class GameManager : MonoBehaviour {
     void LoadLevelData()
     {
         string filePath = Application.dataPath + levelDataFile;
-        Debug.Log(filePath);
         if (File.Exists(filePath))
         {
             string levelJson = File.ReadAllText(filePath);
-            
-
         }else
         {
             Debug.Log("Failed to open level json file");
@@ -73,6 +70,7 @@ public class GameManager : MonoBehaviour {
         {
             StopCoroutine(currentGetTiredCoroutine);
         }
+        
         
         if (currentGainProgressCoroutine != null)
         {
@@ -149,10 +147,16 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver()
     {
+        level = 0;
         isGameOver = true;
         spawn.StopSpawing();
+        spawn.StopMoving();
         ui.ShowGameOver();
         BackgroundScroller.DisableScrolling();
+        foreach(BuildingMover building in buildings)
+        {
+            building.DisableMovement();
+        }
         pc.DisableMovement();
         pc.DisableCollsion();
     }
@@ -171,5 +175,10 @@ public class GameManager : MonoBehaviour {
 
     public static int GetLevel(){
         return level;
+    }
+
+    public void GotoTitle()
+    {
+        SceneManager.LoadScene("main_menu");
     }
 }

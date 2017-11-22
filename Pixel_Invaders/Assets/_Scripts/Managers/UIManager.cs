@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
-
+    public Camera mainCamera;
     public Text scoreLabel;
     public Slider staminaSlider;
     public Slider progressSlider;
     public Text levelLabel;
     public Text gameOverLabel;
     public Button retryButton;
+    public Button titleButton;
 
     private string scoreText = "Score : ";
     private string levelText = "Level ";
@@ -20,9 +21,8 @@ public class UIManager : MonoBehaviour {
         scoreLabel.text = scoreText + 0;
         staminaSlider.value = 1;
         gameOverLabel.gameObject.SetActive(false);
-        //levelLabel.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
-        
+        titleButton.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour {
         levelLabel.gameObject.SetActive(false);
         gameOverLabel.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
+        titleButton.gameObject.SetActive(true);
     }
 
     public void ShowLevelLabel(int i)
@@ -66,5 +67,12 @@ public class UIManager : MonoBehaviour {
         levelLabel.gameObject.SetActive(false);
     }
 
+    public void ShowAddScore(Vector3 objectPos,int score)
+    {
+        mainCamera.WorldToScreenPoint(objectPos);
+        //Text scoreText = new Text();
+       // "+" + score
+
+    }
     
 }

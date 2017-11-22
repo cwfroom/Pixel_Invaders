@@ -28,16 +28,18 @@ public class MasterSpawn : MonoBehaviour {
 
         //Create all enemy types here
         EnemyTypes = new List<EnemyData>();
-        EnemyData goomba = new EnemyData("Goomba",50.0f, 10);
+        EnemyData goomba = new EnemyData("Goomba",50.0f, 20);
         EnemyTypes.Add(goomba);
-        EnemyData spaceinvader = new EnemyData("SpaceInvader",50.0f, 5);
+        EnemyData spaceinvader = new EnemyData("SpaceInvader",50.0f, 30);
         EnemyTypes.Add(spaceinvader);
 
         CollectibleTypes = new List<CollectibleData>();
         CollectibleData coin = new CollectibleData("Coin", 50.0f, 10, 0);
         CollectibleTypes.Add(coin);
-        CollectibleData banana = new CollectibleData("Banana", 50.0f, 20, 10);
+        CollectibleData banana = new CollectibleData("Banana", 50.0f, 20, 5);
         CollectibleTypes.Add(banana);
+        CollectibleData cherry = new CollectibleData("Cherry", 50.0f, 25, 10);
+        CollectibleTypes.Add(cherry);
 
 		RiverTypes = new List<RiverData>();
 		RiverData river = new RiverData("River",50.0f, 100);
@@ -73,6 +75,22 @@ public class MasterSpawn : MonoBehaviour {
         spawning = false;
     }
 
+    public void StopMoving()
+    {
+        foreach (KeyValuePair<string,Stack<GameObject>> pair in buffer)
+        {
+            Stack<GameObject> objectBuffer = pair.Value;
+            foreach (GameObject i in objectBuffer)
+            {
+                ObjectControl ic = i.GetComponent<ObjectControl>();
+                if (ic)
+                {
+                    ic.DisableMovement();
+                }
+            }
+        }
+    }
+
     IEnumerator SpawnWaves()
     {
         
@@ -84,14 +102,17 @@ public class MasterSpawn : MonoBehaviour {
 
             //Since river means instant death, make sure there is an interval between two rivers
             int riverCount = 0;
+            int currentLevel = GameManager.GetLevel() + 1;
+            if (currentLevel > EnemyTypes.Count)
+            {
+                currentLevel = EnemyTypes.Count;
+            }
+
 
             int typeRand = Random.Range(0, 100);
-            if (typeRand < 60)
+            if (typeRand < 70)
             {
-                int currentLevel = GameManager.GetLevel() + 1;
-                if (currentLevel > EnemyTypes.Count){
-                    currentLevel = EnemyTypes.Count;
-                }
+                
 
                 int randType = Random.Range(0, currentLevel);
 
@@ -128,7 +149,7 @@ public class MasterSpawn : MonoBehaviour {
 			else
 			{
                 
-                if (riverCount == 0)
+                if (riverCount == 0 && currentLevel > 1)
                 {
                     riverCount = riverInterval;
                     int randType = Random.Range(0, RiverTypes.Count);
