@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour {
     private int pos = 2;
     private float screenCenterX;
     private bool movementEnabled;
+    private bool collisionEnabled;
 
     public Collider toeCollider;
     public Collider baseCollider;
@@ -35,6 +36,7 @@ public class PlayerControl : MonoBehaviour {
         screenCenterX = Screen.width * 0.5f;
 
         movementEnabled = true;
+        collisionEnabled = true;
         playerPositions = new float[5];
         for (int i = 0; i < 5; i++)
         {
@@ -156,11 +158,13 @@ public class PlayerControl : MonoBehaviour {
     public void EnableCollision()
     {
         gameObject.layer = 8;
+        collisionEnabled = true;
     }
 
     public void DisableCollsion()
     {
         gameObject.layer = 12;
+        collisionEnabled = false;
     }
 
     public static bool IsJumping()
@@ -199,6 +203,10 @@ public class PlayerControl : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
+        if (!collisionEnabled)
+        {
+            return;
+        }
         
         string otherTag = collision.gameObject.tag;
         switch (otherTag) {
@@ -211,13 +219,20 @@ public class PlayerControl : MonoBehaviour {
                         TakeDamageAnim();
                     }
 
-					if (ec.gameObject.name == "SpaceInvader") {
-						SpaceInvaderControl sc = (SpaceInvaderControl)ec;
+                    if (ec.gameObject.name == "SpaceInvader") {
+                        SpaceInvaderControl sc = (SpaceInvaderControl)ec;
                         sc.Action(gm);
-					} else if (ec.gameObject.name == "Goomba"){
+                    } else if (ec.gameObject.name == "Goomba") {
                         GoombaControl gc = (GoombaControl)ec;
                         gc.Action(gm);
-                    }else{
+                    } else if (ec.gameObject.name == "Bomb"){
+                        BombControl bc = (BombControl)ec;
+                        bc.Action(gm);
+                        gm.AddStamina(-100);
+                        gameObject.SetActive(false);
+                        GameObject explosion = Instantiate(Resources.Load("Prefabs/Explosion")) as GameObject;
+                        explosion.transform.position = gameObject.transform.position;
+                    } else { 
                         se.PlaySE("cry");
                         ec.Action(gm);
                     }

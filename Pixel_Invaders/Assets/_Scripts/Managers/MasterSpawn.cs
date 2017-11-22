@@ -32,6 +32,8 @@ public class MasterSpawn : MonoBehaviour {
         EnemyTypes.Add(goomba);
         EnemyData spaceinvader = new EnemyData("SpaceInvader",50.0f, 30);
         EnemyTypes.Add(spaceinvader);
+        EnemyData bomb = new EnemyData("Bomb", 50.0f, 100);
+        EnemyTypes.Add(bomb);
 
         CollectibleTypes = new List<CollectibleData>();
         CollectibleData coin = new CollectibleData("Coin", 50.0f, 10, 0);
@@ -107,6 +109,9 @@ public class MasterSpawn : MonoBehaviour {
             {
                 currentLevel = EnemyTypes.Count;
             }
+
+            //Spawn everything for debugging
+            currentLevel = EnemyTypes.Count;
 
 
             int typeRand = Random.Range(0, 100);
