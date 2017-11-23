@@ -1646,7 +1646,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HighScore: 1750'
+  m_Text: 'HighScore: 2000'
 --- !u!222 &838256409
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2310,6 +2310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 539182066}
   scoreLabel: {fileID: 1961694421}
+  highScoreLabel: {fileID: 838256408}
   staminaSlider: {fileID: 847781200}
   progressSlider: {fileID: 538200759}
   levelLabel: {fileID: 2059524588}

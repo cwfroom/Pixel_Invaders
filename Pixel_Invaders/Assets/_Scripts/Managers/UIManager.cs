@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
     public Camera mainCamera;
     public Text scoreLabel;
+    public Text highScoreLabel;
     public Slider staminaSlider;
     public Slider progressSlider;
     public Text levelLabel;
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour {
     public Button titleButton;
 
     private string scoreText = "Score : ";
+    private string highscoreText = "Highscore: ";
     private string levelText = "Level ";
 
 	// Use this for initialization
@@ -33,6 +35,11 @@ public class UIManager : MonoBehaviour {
     public void UpdateScore(int score)
     {
         scoreLabel.text = scoreText + score;
+    }
+
+    public void UpdateHighScore(int highscore)
+    {
+        highScoreLabel.text = highscoreText + highscore;
     }
 
     public void SetStaminaSlider(int stamina)

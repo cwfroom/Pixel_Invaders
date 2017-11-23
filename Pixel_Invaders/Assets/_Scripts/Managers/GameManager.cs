@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 
     private static int level = 0;
     private int score = 0;
+    private int highscore = 2000;
     private int stamina = 100;
     private int progress = 0;
     private bool isGameOver;
@@ -92,6 +93,10 @@ public class GameManager : MonoBehaviour {
     {
         score += increment * (level + 1);
         ui.UpdateScore(score);
+        if (score >= highscore)
+        {
+            ui.UpdateHighScore(highscore);
+        }
     }
 
     public void AddStamina(int increment)
