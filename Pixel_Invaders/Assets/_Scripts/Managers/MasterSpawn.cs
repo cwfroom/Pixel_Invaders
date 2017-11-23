@@ -113,7 +113,7 @@ public class MasterSpawn : MonoBehaviour {
             }
 
             //Spawn everything for debugging
-            currentLevel = EnemyTypes.Count;
+            //currentLevel = EnemyTypes.Count;
 
 
             int typeRand = Random.Range(0, 100);

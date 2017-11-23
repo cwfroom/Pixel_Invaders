@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour {
         }
         pc.DisableMovement();
         pc.DisableCollsion();
+        pc.gameObject.SetActive(false);
     }
 
     public void Restart()
