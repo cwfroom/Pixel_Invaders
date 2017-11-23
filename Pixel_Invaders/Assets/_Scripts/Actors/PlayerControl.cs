@@ -232,7 +232,11 @@ public class PlayerControl : MonoBehaviour {
                         gameObject.SetActive(false);
                         GameObject explosion = Instantiate(Resources.Load("Prefabs/Explosion")) as GameObject;
                         explosion.transform.position = gameObject.transform.position;
-                    } else { 
+                    } else if (ec.gameObject.name == "Ghost"){
+                        GhostControl gc = (GhostControl)ec;
+                        gc.Action(gm);
+                    }
+                    else { 
                         se.PlaySE("cry");
                         ec.Action(gm);
                     }
@@ -257,10 +261,15 @@ public class PlayerControl : MonoBehaviour {
 
             case "Collectible":
                 CollectibleControl cc = collision.gameObject.GetComponent<CollectibleControl>();
-                if (cc)
+                if (cc.gameObject.name == "Cherry")
+                {
+                    CherryControl cherry = (CherryControl)cc;
+                    cherry.Action(gm);
+                }else
                 {
                     cc.Action(gm);
-                }
+                }  
+                
 
                 break;
         }

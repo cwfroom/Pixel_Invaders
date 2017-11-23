@@ -181,4 +181,9 @@ public class GameManager : MonoBehaviour {
     {
         SceneManager.LoadScene("main_menu");
     }
+
+    public void MakeGhostsVulnerable()
+    {
+        spawn.MakeGhostsVulnerable();
+    }
 }

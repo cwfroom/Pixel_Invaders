@@ -32,6 +32,8 @@ public class MasterSpawn : MonoBehaviour {
         EnemyTypes.Add(goomba);
         EnemyData spaceinvader = new EnemyData("SpaceInvader",50.0f, 30);
         EnemyTypes.Add(spaceinvader);
+        EnemyData ghost = new EnemyData("Ghost", 50.0f, 400);
+        EnemyTypes.Add(ghost);
         EnemyData bomb = new EnemyData("Bomb", 50.0f, 100);
         EnemyTypes.Add(bomb);
 
@@ -115,7 +117,7 @@ public class MasterSpawn : MonoBehaviour {
 
 
             int typeRand = Random.Range(0, 100);
-            if (typeRand < 70)
+            if (typeRand < 60)
             {
                 
 
@@ -188,5 +190,18 @@ public class MasterSpawn : MonoBehaviour {
         return initialX;
     }
 
+    public void MakeGhostsVulnerable()
+    {
+        GhostControl[] ghosts = FindObjectsOfType<GhostControl>();
+        foreach (GhostControl ghost in ghosts)
+        {
+            if (ghost.gameObject.activeInHierarchy)
+            {
+                ghost.MakeVulnerable();
+            }
+            
+        }
+
+    }
 
 }
