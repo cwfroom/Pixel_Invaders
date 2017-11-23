@@ -1793,8 +1793,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5e97e7a18e7854e9314bc5631c0360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm0: {fileID: 0}
-  bgm1: {fileID: 0}
+  bgm0: {fileID: 8300000, guid: d7f40c4fed4523a4f9d040ea5c02525d, type: 3}
+  bgm1: {fileID: 8300000, guid: 914376ed9d497394198f2138d05843fc, type: 3}
   bgm2: {fileID: 8300000, guid: b86fd0c2ca10da143babd407c0c304aa, type: 3}
   bgm3: {fileID: 8300000, guid: 32863dd3ca942484cb743c6ee4f58c1a, type: 3}
   bgm4: {fileID: 8300000, guid: c460d612349b86d4a848d468fccbc63f, type: 3}
