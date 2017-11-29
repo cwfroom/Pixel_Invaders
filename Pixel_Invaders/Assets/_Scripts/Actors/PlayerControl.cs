@@ -237,8 +237,8 @@ public class PlayerControl : MonoBehaviour {
                         gc.Action(gm);
                     }
                     else { 
-                        se.PlaySE("cry");
-                        ec.Action(gm);
+                        //se.PlaySE("cry");
+                        //ec.Action(gm);
                     }
                 }
 

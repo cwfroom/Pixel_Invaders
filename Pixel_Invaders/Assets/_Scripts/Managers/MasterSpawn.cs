@@ -156,7 +156,7 @@ public class MasterSpawn : MonoBehaviour {
 			else
 			{
                 
-                if (riverCount == 0 && currentLevel > 1)
+                if (riverCount == 0 && currentLevel > 3)
                 {
                     riverCount = riverInterval;
                     int randType = Random.Range(0, RiverTypes.Count);

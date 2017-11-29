@@ -21,7 +21,15 @@ public class BGMPlayer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        audioSource.clip = bgm0;
+        int rand = Random.Range(0, 1);
+        if (rand == 0)
+        {
+            audioSource.clip = bgm0;
+        }else if (rand == 1)
+        {
+            audioSource.clip = bgm1;
+        }
+        
         audioSource.Play();
         audioSource.loop = true;
     }

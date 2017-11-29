@@ -6,6 +6,7 @@ using System.IO;
 
 public class GameManager : MonoBehaviour {
     private UIManager ui;
+    private LeaderboardManager leaderBoard;
     private MasterSpawn spawn;
     private PlayerControl pc;
     private BuildingMover[] buildings;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour {
     private bool isGameOver;
 
     public float getTiredInterval = 0.2f;
-    public float gainProgressInterval = 0.4f;
+    public float gainProgressInterval = 0.05f;
 
     private Coroutine currentGetTiredCoroutine;
     private Coroutine currentGainProgressCoroutine;
@@ -38,6 +39,14 @@ public class GameManager : MonoBehaviour {
         {
             Debug.Log("Failed to find player control in GameManager");
         }
+        leaderBoard = FindObjectOfType<LeaderboardManager>();
+        if (leaderBoard)
+        {
+            highscore = leaderBoard.GetHigh();
+            ui.UpdateHighScore(highscore);
+        }
+
+
         buildings = FindObjectsOfType<BuildingMover>();
         spawn = GetComponent<MasterSpawn>();
 
