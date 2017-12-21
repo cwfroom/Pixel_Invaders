@@ -110,6 +110,10 @@ public class GameManager : MonoBehaviour {
 
     public void AddStamina(int increment)
     {
+        if (increment < -10){
+            pc.TakeDamageAnim();
+        }
+
         stamina += increment;
         ui.SetStaminaSlider(stamina);
         if (stamina <= 0)

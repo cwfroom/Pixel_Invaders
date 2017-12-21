@@ -78,7 +78,8 @@ public class LeaderboardManager : MonoBehaviour {
 
     public int GetHigh()
     {
-        return scoreList.scores[0];
+        //return scoreList.scores[0];
+        return 0;
     }
     public int GetLow()
     {

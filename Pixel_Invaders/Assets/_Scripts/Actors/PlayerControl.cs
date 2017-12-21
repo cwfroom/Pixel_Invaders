@@ -189,7 +189,7 @@ public class PlayerControl : MonoBehaviour {
         charaAnimator.SetBool("isJumping?", false);
     }
 
-    private void TakeDamageAnim()
+    public void TakeDamageAnim()
     {
         charaAnimator.SetBool("isDamage?",true);
         Invoke("ResetDamageAnim", damageAnimLength);
@@ -214,11 +214,7 @@ public class PlayerControl : MonoBehaviour {
                 EnemyControl ec = collision.gameObject.GetComponent<EnemyControl>();
                 if (ec)
                 {
-					if (!isJumping)
-                    {
-                        TakeDamageAnim();
-                    }
-
+					
                     if (ec.gameObject.name == "SpaceInvader") {
                         SpaceInvaderControl sc = (SpaceInvaderControl)ec;
                         sc.Action(gm);
@@ -263,8 +259,10 @@ public class PlayerControl : MonoBehaviour {
                 CollectibleControl cc = collision.gameObject.GetComponent<CollectibleControl>();
                 if (cc.gameObject.name == "Cherry")
                 {
-                    CherryControl cherry = (CherryControl)cc;
-                    cherry.Action(gm);
+                    gm.MakeGhostsVulnerable();
+                    //CherryControl cherry = (CherryControl)cc;
+                    //cherry.Action(gm);
+                    cc.Action(gm);
                 }else
                 {
                     cc.Action(gm);

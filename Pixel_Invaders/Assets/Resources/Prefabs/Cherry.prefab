@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 82812905904228318}
   - component: {fileID: 54713691067281186}
   - component: {fileID: 65671603159999864}
-  - component: {fileID: 114432222881669946}
+  - component: {fileID: 114638518635541454}
   m_Layer: 9
   m_Name: Cherry
   m_TagString: Collectible
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1550312539851920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.355, y: 6.414, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,7 +151,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114432222881669946
+--- !u!114 &114638518635541454
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1550312539851920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc44931fceb018f4c837f823ad3466e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 16cc267a67cf13c49984c5515a2a1fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0

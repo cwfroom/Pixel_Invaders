@@ -706,7 +706,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pixel Runner!
+  m_Text: Pixel Rush!
 --- !u!222 &425931420
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -902,7 +902,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pixel Runner!
+  m_Text: Pixel Rush!
 --- !u!222 &505829895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2516,7 +2516,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pixel Runner!
+  m_Text: Pixel Rush!
 --- !u!222 &1535980142
 CanvasRenderer:
   m_ObjectHideFlags: 0
